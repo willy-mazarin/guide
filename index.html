@@ -116,6 +116,11 @@
   .phead h1{font-weight:700;font-size:clamp(30px,5.4vw,50px);letter-spacing:-.035em;margin:10px 0 5px;position:relative;}
   .phead p{margin:0;opacity:.9;font-size:14.5px;position:relative;}
   .phead--mac .accent{color:#d8d8dd;}
+  .phead__logo{position:absolute;right:32px;top:50%;transform:translateY(-50%);width:80px;height:80px;z-index:1;}
+  .phead__logo svg{width:100%;height:100%;display:block;}
+  .phead--win .phead__logo{opacity:.9;}
+  .phead--mac .phead__logo{filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));}
+  @media (max-width:600px){.phead__logo{width:52px;right:22px;}}
 
   .sec-title{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink2);margin:28px 0 15px;}
   .sec-title .dot{width:8px;height:8px;border-radius:50%;background:var(--brand);}
@@ -164,7 +169,7 @@
   .infobar svg{width:20px;height:20px;flex:none;color:var(--brand);}
 
   /* ---------- OBSOLESCENCE (dual) ---------- */
-  .obs-intro{max-width:680px;font-size:clamp(15px,2.2vw,18px);color:var(--ink2);margin-bottom:6px;}
+  .obs-intro{font-size:clamp(15px,2.2vw,18px);color:var(--ink2);margin-bottom:6px;}
   .obs-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:26px;}
   @media (max-width:680px){.obs-grid{grid-template-columns:1fr;}}
   .obs-card{position:relative;border-radius:20px;padding:28px;box-shadow:var(--shadow);}
@@ -579,7 +584,7 @@ function renderProduct(key){
   return `
   <button class="backlink" onclick="go('home')">← ${L(UI.back)}</button>
   <div class="${mac?'mac':''}">
-    <div class="phead phead--${p.theme}">
+    <div class="phead phead--${p.theme}"><div class="phead__logo">${mac?appleLogo:winLogo}</div>
       <p class="eyebrow">${p.os}</p>
       <h1>${L(p.kind)}</h1>
       <p>${L(p.sub)}</p>
